@@ -21,6 +21,7 @@ export default defineConfig({
                             {text: '整合包元数据', link: '/build-a-pack/pack-configs/pack-yml'},
                             {text: '资源列表', link: '/build-a-pack/pack-configs/list-yml'},
                             {text: '版本选择规则', link: '/build-a-pack/pack-configs/version-choice'},
+                            {text: '条件', link: '/build-a-pack/pack-configs/condition'},
                         ]
                     },
                 ]
