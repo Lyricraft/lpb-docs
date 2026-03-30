@@ -4,7 +4,7 @@
 
 ### 根节点
 
-list.yml 的根节点是一个对象，包含 `groups` 、`loaders` 和 `folders` 三个子节点。其中， `groups` 定义资源组，为数组，必须填写，成员为 group 对象；`loaders` 定义模组加载器和版本，为对象，必须填写；`folders` 定义文件夹，为数组，可以不填写，成员为 folder 对象。
+list.yml 的根节点是一个对象，包含 `groups` 、`loaders` 和 `folders` 三个子节点。其中， `groups` 定义资源组，为数组，必须填写，成员为 group 对象；`loaders` 定义模组加载器和版本，为对象，可以不填写；`folders` 定义文件夹，为数组，可以不填写，成员为 folder 对象。
 
 ### 资源组（group）对象
 
@@ -70,9 +70,7 @@ groups:
           - mods/just-enough-items
 ```
 
-### 模组加载器对象（loaders）
-
-数个资源组组合，再加上模组加载器的定义，即可成为一份完整的资源清单。这已经是一个完整的 list.yml 了，毕竟 folders 不是必须的，也不一定需要用到。如下：
+数个资源组组合，即可成为一份完整的资源清单。这已经是一个完整的 list.yml 了，毕竟 loaders 和 folders 不是必须的，后者也不一定需要用到。如下：
 
 ```yml
 groups:
@@ -102,16 +100,44 @@ groups:
     resources:
       - mods/entity-texture-features
       - mods/entity-model-features
+```
+
+### 模组加载器对象（loaders）
+
+模组加载器对象定义整合包使用什么加载器的什么版本。它是一个对象，键为加载器名称，值为一个对象，该对象内填写的是 [版本选择规则](version-choice.md)。如：
+
+```yml
 loaders:
   neoforge:
     versions:
       21.1.222:
         - mcVersion: 1.21.1
+        # 在 Minecraft 版本为 1.21.1 时，选择 Neoforge 版本 21.1.222
       21.0.167:
         - mcVersion: "1.21"
-      choice: stable
-  forge: latest
+        # 在 Minecraft 版本为 1.21 时，选择 Neoforge 版本 21.0.167
+    choice: stable
+      # 在其他情况下，尽量选择 Neoforge 的稳定版本
 ```
+
+如果想指定其条件版本，只想指定自动选择规则，则可以直接在加载器名称的键后面填写自动选择规则字符串作为值，如：
+
+```yml
+loaders:
+  forge: latest
+  # 自动选择加载器的最新版本
+```
+
+如果不想指定任何版本选择规则，直接将值设为 `null` 即可。null 也可简写为 `~`。如：
+
+```yml
+loaders:
+  fabric: null
+  quilt: ~
+# 直接按照策略中定义的自动选择规则或默认的来选择加载器版本
+```
+
+模组加载器对象不是必须的，如果不定义，而输出目标含有某加载器，LPB 会自动使用此加载器，并按照策略中定义的自动选择规则或默认的来选择此加载器的版本。
 
 ### 文件夹（folder）对象
 
@@ -142,7 +168,7 @@ folders:
     paths: config/worldedit/schematics
 ```
 
-如下是一个同时包含 group 和 folder 定义的完整 list.yml 示例：
+如下是一个同时包含 group、loaders 和 folder 定义的完整 list.yml 示例：
 
 ```yml
 groups:
@@ -167,6 +193,15 @@ groups:
     #数据包：可合成鞘翅
     resources:
       - datapacks/creatableElytra
+loaders:
+  neoforge:
+    versions:
+      21.1.222:
+        - mcVersion: 1.21.1
+      21.0.167:
+        - mcVersion: "1.21"
+    choice: stable
+  forge: latest
 folders:
   - id: builder:datapacks
     # 数据包文件夹

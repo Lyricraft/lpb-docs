@@ -11,22 +11,18 @@ export default defineConfig({
         sidebar: [
             {text: 'Home', link: '/'},
             {
-                text: '导航',
+                text: '制作整合包',
                 items: [
+                    {text: '开始', link: '/build-a-pack/getting-started'},
                     {
-                        text: '制作整合包',
+                        text: '整合包配置',
                         items: [
-                            {text: '开始', link: '/build-a-pack/getting-started'},
-                            {
-                                text: '整合包配置',
-                                items: [
-                                    {text: '总览', link: '/build-a-pack/pack-configs/overview'},
-                                    {text: '整合包元数据', link: '/build-a-pack/pack-configs/pack-yml'},
-                                    {text: '资源列表', link: '/build-a-pack/pack-configs/list-yml'},
-                                ]
-                            },
+                            {text: '总览', link: '/build-a-pack/pack-configs/overview'},
+                            {text: '整合包元数据', link: '/build-a-pack/pack-configs/pack-yml'},
+                            {text: '资源列表', link: '/build-a-pack/pack-configs/list-yml'},
+                            {text: '版本选择规则', link: '/build-a-pack/pack-configs/version-choice'},
                         ]
-                    }
+                    },
                 ]
             }
         ]
