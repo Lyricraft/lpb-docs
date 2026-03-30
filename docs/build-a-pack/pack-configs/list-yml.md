@@ -4,7 +4,7 @@
 
 ### 根节点
 
-list.yml 的根节点是一个对象，包含 `groups` 和 `folders` 两个子节点，它们都是数组。其中， `groups` 定义资源组，必须填写，成员为 group 对象；`folders` 定义文件夹，可以不填写，成员为 folder 对象。
+list.yml 的根节点是一个对象，包含 `groups` 、`loaders` 和 `folders` 三个子节点。其中， `groups` 定义资源组，为数组，必须填写，成员为 group 对象；`loaders` 定义模组加载器和版本，为对象，必须填写；`folders` 定义文件夹，为数组，可以不填写，成员为 folder 对象。
 
 ### 资源组（group）对象
 
@@ -59,7 +59,18 @@ groups:
       - mods/just-enough-items
 ```
 
-数个资源组组合即可成为一份完整的资源清单。这已经是一个完整的 list.yml 了，毕竟 folders 不是必须的，也不一定需要用到。如下：
+这相当于：
+
+```yml
+groups:
+  - id: jei
+    options:
+      - id: jei
+        resources:
+          - mods/just-enough-items
+```
+
+数个资源组组合，再加上模组加载器的定义，即可成为一份完整的资源清单。这已经是一个完整的 list.yml 了，毕竟 folders 不是必须的，也不一定需要用到。如下：
 
 ```yml
 groups:
