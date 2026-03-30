@@ -70,6 +70,8 @@ groups:
           - mods/just-enough-items
 ```
 
+### 模组加载器对象（loaders）
+
 数个资源组组合，再加上模组加载器的定义，即可成为一份完整的资源清单。这已经是一个完整的 list.yml 了，毕竟 folders 不是必须的，也不一定需要用到。如下：
 
 ```yml
@@ -100,6 +102,15 @@ groups:
     resources:
       - mods/entity-texture-features
       - mods/entity-model-features
+loaders:
+  neoforge:
+    versions:
+      21.1.222:
+        - mcVersion: 1.21.1
+      21.0.167:
+        - mcVersion: "1.21"
+      choice: stable
+  forge: latest
 ```
 
 ### 文件夹（folder）对象
