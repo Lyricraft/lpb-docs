@@ -20,6 +20,12 @@ export default defineConfig({
                             {text: '总览', link: '/build-a-pack/pack-configs/overview'},
                             {text: '整合包元数据', link: '/build-a-pack/pack-configs/pack-yml'},
                             {text: '资源列表', link: '/build-a-pack/pack-configs/list-yml'},
+                            {
+                                text: '资源定义',
+                                items: [
+                                    {text: '资源定义', link: '/build-a-pack/pack-configs/resources/resources-yml'},
+                                ]
+                            },
                             {text: '版本选择规则', link: '/build-a-pack/pack-configs/version-choice'},
                             {text: '条件', link: '/build-a-pack/pack-configs/condition'},
                         ]
