@@ -10,12 +10,11 @@
 
 ```yml
 versions:
-  6.0.8:
-    - mcVersion: 1.20.1
-    # 在 Minecraft 1.20.1 版本下使用该模组的 6.0.8 版本。
-  6.0.9:
+  21.1.222:
     - mcVersion: 1.21.1
-    # 在 Minecraft 1.21.1 版本下使用该模组的 6.0.9 版本。
+  21.0.167:
+    - mcVersion: "1.21"
+choice: stable
 ```
 
 条件版本可以不配置。如果省略，则全部交给自动选择规则来决定选择什么版本。自动选择规则配置为 `static` 的情况除外。
@@ -35,23 +34,17 @@ versions:
 
 ## 具体使用
 
-版本选择规则往往不被包裹在专门的独立对象中。使用版本选择规则，往往是直接将 versions 和 choice 这两个字段填写在需要指定此规则的那个对象内。如下是一个在资源定义中实际使用版本选择规则的例子。
+版本选择规则往往不被包裹在专门的独立对象中。使用版本选择规则，往往是直接将 versions 和 choice 这两个字段填写在需要指定此规则的那个对象内。如下是一个在资源列表的加载器定义中实际使用版本选择规则的例子。
 
 ```yml
-main:
-  # 机械动力
-  type: platform
-  content: mod
-  size: both
-  links:
-    modrinth: "https://modrinth.com/mod/create"
-    curseforge: "https://www.curseforge.com/minecraft/mc-mods/create"
-  versions:
-    6.0.8:
-      - mcVersion: 1.20.1
-      # 在 Minecraft 1.20.1 版本下使用机械动力的 6.0.8 版本。
-    6.0.9:
-      - mcVersion: 1.21.1
-      # 在 Minecraft 1.21.1 版本下使用机械动力的 6.0.9 版本。
-  choice: latest # 其他情况自动选择最新版本
+loaders:
+  neoforge:
+    versions:
+      21.1.222:
+        - mcVersion: 1.21.1
+      # 在 Minecraft 版本为 1.21.1 时，选择 Neoforge 版本 21.1.222
+      21.0.167:
+        - mcVersion: "1.21"
+      # 在 Minecraft 版本为 1.21 时，选择 Neoforge 版本 21.0.167
+    choice: stable
 ```

@@ -27,7 +27,7 @@
 type: platform
 side: both
 content: mod
-links:
+platforms:
   modrinth: https://modrinth.com/mod/create
   curseforge: https://www.curseforge.com/minecraft/mc-mods/create
 # 主资源项目为模组机械动力，在双端都应用
