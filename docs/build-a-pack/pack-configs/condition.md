@@ -29,7 +29,7 @@ conditions:
 - `option`: 字符串或字符串数组，字符串内容为资源选项路径，即为资源组 id 和资源选项 id 的拼接，中间用点 `.` 连接（如 `basicRendering.sodium`）。不能指向自己或同一 group 下的其他 option。资源选项触发条件。若该资源选项已命中，则为 true，否则为 false。若为数组，默认任一命中即为 `true`。
 - `resource`: 字符串或字符串数组，字符串内容为资源路径。指向的 resource 不能被自身所在 group 中的包括自己在内的任何 option 调用。资源引用条件，若该资源已被引用，则为 true，否则为 false。若为数组，默认任一命中即为 `true`。
 
-条件整体本身在作为一个值出现时，它往往出现在数组中。这个顶级数组相当于被 and 条件括起，也就是说，这个数组中的所有条件都要满足，整个 conditions 数组的条件才算成立。
+条件整体本身在作为一个值出现时，它往往出现在数组中。这个顶级数组相当于被 and 条件括起，也就是说，这个数组中的所有条件都要满足，整个 conditions 数组的条件才算满足。
 
 看下面这个例子：
 
@@ -106,4 +106,4 @@ groups:
 
 ## 具体使用
 
-条件整体往往以数组的形式出现，其键一般为 `conditions`。这时一般可以将 condition 字段省略，若省略则表示条件一定成立。条件整体也可能作为一个以满足条件后选中的结果的键的值，就像 [条件版本](version-choice.md#conditioned-versions) 和 folders 的定义一样。
+条件整体往往以数组的形式出现，其键一般为 `conditions`。这时一般可以将 condition 字段省略，若省略则表示条件一定成立。条件整体也可能作为一个以满足条件后选中的结果的键的值，就像 [条件版本](version-choice.md#conditioned-versions) 和 list.yml 中 [folders](list-yml.md#folder) 的定义一样。
