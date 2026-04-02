@@ -36,13 +36,15 @@ secondary:
     conditions:
       - mcVersion: 1.21.1
     side: both
-    files:
-      "builtin:config/create-common.toml": "/configs/create/create-common.toml"
+    file: configs/create/common.toml
+    path: config
+    rename: create-common.toml
     # 一个附属资源，公共配置，只在 Minecraft 版本为 1.21.1 时应用，在双端都应用
   - type: files
     side: client
-    files:
-      "builtin:config/create-client.toml": "/configs/create/create-client.toml"
+    file: configs/create/client.toml
+    path: config
+    rename: create-client.toml
     # 有一个附属资源，客户端配置，只在客户端应用
 ```
 

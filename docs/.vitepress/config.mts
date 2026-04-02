@@ -25,6 +25,7 @@ export default defineConfig({
                                 items: [
                                     {text: '资源定义', link: '/build-a-pack/pack-configs/resources/resources-yml'},
                                     {text: '平台资源类型', link: '/build-a-pack/pack-configs/resources/platform-resource'},
+                                    {text: '本地文件资源类型', link: '/build-a-pack/pack-configs/resources/files-resource'},
                                 ]
                             },
                             {text: '版本选择规则', link: '/build-a-pack/pack-configs/version-choice'},
