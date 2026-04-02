@@ -46,19 +46,21 @@ groups:
     required: true
 ```
 
-如果我们的资源组中只有一个资源选项，不需要在不同版本中寻找其他替代品，那么我们可以简写这个资源组及资源选项。这时，我们不用写资源组的 `id`、`options`和`required`，以及资源选项的`id`，我们写一个键 `option`，其值为资源选项的 id。（如果你还是不想定义 id，在 option 后写一个空字符串即可，用一对紧邻的引号 `""` 表示。）然后，直接在这一层对象下定义资源选项的 `conditions` 和 `resources` 字段即可。
+如果我们的资源组中只有一个资源选项，不需要在不同版本中寻找其他替代品，那么我们可以简写这个资源组及资源选项。这时，我们不用写资源组的 `options`和`required`，以及资源选项的`id`，直接将 `resources` 写在资源组对象内，然后直接在其中填写资源列表即可。如果要使用条件，直接在资源组对象下定义 `conditions` 字段即可。
 
 这时如果定义了条件，它仍会生效，决定这个资源选项是否应用。条件不满足不会报错。（此时定义 `required` 无效，因为没有意义。）
 
-如果你在 `option` 后定义了 id，此处简写的资源组和资源选项的 id 将都会是这个值。
+如果定义了 id，此处简写的资源组和资源选项的 id 将都会是这个值。
 
 如下是一个简写资源组的示例：
 
 ```yml
 groups:
-  - option: jei
+  - id: jei
     resources:
       - mods/just-enough-items
+    conditions:
+      - mcVersion: "[1.20,)"
 ```
 
 这相当于：
@@ -70,6 +72,8 @@ groups:
       - id: jei
         resources:
           - mods/just-enough-items
+        conditions:
+          - mcVersion: "[1.20,)"
 ```
 
 数个资源组组合，即可成为一份完整的资源清单。这已经是一个完整的 list.yml 了，毕竟 loaders 和 folders 不是必须的，后者也不一定需要用到。如下：
@@ -97,7 +101,7 @@ groups:
       - id: iris
         resources:
           - mods/iris
-  - option: etfAndEmf
+  - id: etfAndEmf
     # 实体纹理和模型特性
     resources:
       - mods/entity-texture-features
@@ -174,7 +178,7 @@ folders:
 
 ```yml
 groups:
-  - option: worldEdit
+  - id: worldEdit
     # 创世神
     resources:
       - mods/worldedit
@@ -191,7 +195,7 @@ groups:
           - mcVersion: "[1.21,1.21.1]"
         resources:
           - mods/globalPacks
-  - option: creatableElytra
+  - id: creatableElytra
     #数据包：可合成鞘翅
     resources:
       - datapacks/creatableElytra

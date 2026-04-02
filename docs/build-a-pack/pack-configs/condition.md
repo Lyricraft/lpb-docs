@@ -76,13 +76,13 @@ conditions:
 
 ```yml
 groups:
-  - option: itemA
+  - id: itemA
     conditions:
-      - option: itemB
+      - group: itemB
   # 资源选项 itemA 的条件判断依赖于资源选项 itemB 的结果
-  - option: itemB
+  - id: itemB
     conditions:
-      - option: itemA
+      - group: itemA
   # 资源选项 itemB 的条件判断又依赖于 itemA 的结果
   # 这就形成了循环依赖，无法决定应该先判断谁
   - id: groupX
